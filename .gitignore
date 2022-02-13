@@ -1,0 +1,12 @@
+# Local .terraform directories
+**/.terraform/*
+
+*.tfstate
+*.tfstate.*
+**/.terraform.lock.hcl
+
+crash.log
+#*.tfvars
+
+
+# Ignore override files as they are usually used to ov

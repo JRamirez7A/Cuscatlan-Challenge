@@ -1,0 +1,8 @@
+aws eks update-kubeconfig --name EKS-Cuscatlan-development --region us-east-1
+aws eks update-kubeconfig --name Manual-EKS --region us-east-1
+aws eks update-kubeconfig --name java-cluster --region eu-central-1
+
+AmazonEKSClusterPolicy
+AmazonEKSWorkerNodePolicy
+AmazonEC2ContainerRegistryReadOnly
+AmazonEKS_CNI_Policy
