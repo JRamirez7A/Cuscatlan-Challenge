@@ -24,7 +24,7 @@ spec:
             cpu: 900m
             memory: 800Mi
         ports:
-        - containerPort: 9000
+        - containerPort: 80
 ---
 apiVersion: v1
 kind: Service

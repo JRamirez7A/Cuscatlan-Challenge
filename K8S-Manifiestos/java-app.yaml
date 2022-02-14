@@ -1,42 +1,42 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: d-sonarqube
+  name: d-java-app
  # namespace: development
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: sonarqube
+      app: java-app
   template:
     metadata:
       labels:
-        app: sonarqube
+        app: java-app
     spec:
       containers:
-      - name: sonarqube
-        image: sonarqube
+      - name: java-app
+        image: 050264659180.dkr.ecr.us-east-1.amazonaws.com/cuscatlan-java:1402
         resources:
           requests:
-            cpu: 500m
-            memory: 1024Mi
+            cpu: 300m
+            memory: 500Mi
           limits:
-            cpu: 9000m
-            memory: 2048Mi
+            cpu: 900m
+            memory: 800Mi
         ports:
-        - containerPort: 9000
+        - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: svc-sonarqube
+  name: svc-java-app
   #namespace: development
 
 spec:
   ports:
     - port: 80
-      targetPort: 9000
+      targetPort: 8080
       protocol: TCP
   type: LoadBalancer
   selector:
-    app: sonarqube
+    app: java-app
