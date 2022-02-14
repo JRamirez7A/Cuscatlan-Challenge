@@ -18,11 +18,11 @@ spec:
         image: jenkins/jenkins
         resources:
           requests:
-            cpu: 200m
-            memory: 400Mi
+            cpu: 500m
+            memory: 1024Mi
           limits:
             cpu: 900m
-            memory: 900Mi
+            memory: 2048Mi
         ports:
         - containerPort: 8080
 ---

@@ -18,7 +18,7 @@ spec:
         image: 050264659180.dkr.ecr.us-east-1.amazonaws.com/cuscatlan-java:1402
         resources:
           requests:
-            cpu: 300m
+            cpu: 200m
             memory: 500Mi
           limits:
             cpu: 900m

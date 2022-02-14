@@ -35,6 +35,10 @@ resource "aws_subnet" "cuscatlan" {
   }
 }
 
+
+
+
+
 resource "aws_internet_gateway" "cuscatlan" {
   vpc_id = aws_vpc.cuscatlan.id
 

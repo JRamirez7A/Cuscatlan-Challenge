@@ -1,0 +1,40 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+    id 'jacoco'
+	id "org.sonarqube" version "2.7"
+}
+
+group = 'sv.com.test'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	
+	// Test
+	testImplementation ('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage:junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
+
+test.finalizedBy jacocoTestReport
+
+jacocoTestReport {
+	dependsOn test
+	reports {
+		xml.enabled true
+		csv.enabled false
+		html.enabled true
+	}
+}

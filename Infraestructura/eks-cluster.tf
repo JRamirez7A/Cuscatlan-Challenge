@@ -45,7 +45,7 @@ resource "aws_security_group" "cuscatlan-cluster" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
+#it's not best practices
   ingress {
     from_port   = 0
     to_port     = 0
