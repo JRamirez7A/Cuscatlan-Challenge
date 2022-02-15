@@ -69,23 +69,13 @@ resource "aws_security_group_rule" "cuscatlan-dev-cluster-ingress-workstation-ht
   type              = "ingress"
 }
 
-resource "aws_security_group_rule" "cuscatlan-dev2-cluster-ingress-workstation-https" {
-  cidr_blocks       = ["0.0.0.0/0"]
-  description       = "Allow workstation to communicate with the cluster API Server"
-  from_port         = 9000
-  protocol          = "tcp"
-  security_group_id = aws_security_group.cuscatlan-dev-cluster.id
-  to_port           = 9000
-  type              = "ingress"
-}
-
 resource "aws_eks_cluster" "cuscatlan-dev" {
   name     = "${var.cluster-name}-dev"
   role_arn = aws_iam_role.cuscatlan-dev-cluster.arn
 
   vpc_config {
     security_group_ids = [aws_security_group.cuscatlan-dev-cluster.id]
-    subnet_ids         = aws_subnet.cuscatlan[*].id
+    subnet_ids         = [aws_subnet.cuscatlan[0].id, aws_subnet.cuscatlan[1].id ]
   }
 
   depends_on = [

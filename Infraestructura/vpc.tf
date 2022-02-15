@@ -22,7 +22,7 @@ resource "aws_vpc" "cuscatlan" {
 }
 
 resource "aws_subnet" "cuscatlan" {
-  count = 2
+  count = 4
 
   availability_zone       = data.aws_availability_zones.available.names[count.index]
   cidr_block              = "10.0.${count.index}.0/24"
@@ -34,10 +34,6 @@ resource "aws_subnet" "cuscatlan" {
     "kubernetes.io/cluster/${var.cluster-name}"= "shared",
   }
 }
-
-
-
-
 
 resource "aws_internet_gateway" "cuscatlan" {
   vpc_id = aws_vpc.cuscatlan.id

@@ -42,7 +42,7 @@ resource "aws_eks_node_group" "cuscatlan-dev" {
   cluster_name    = aws_eks_cluster.cuscatlan-dev.name
   node_group_name = "cuscatlan-dev"
   node_role_arn   = aws_iam_role.cuscatlan-node.arn
-  subnet_ids      = aws_subnet.cuscatlan[*].id
+  subnet_ids      = [aws_subnet.cuscatlan[0].id, aws_subnet.cuscatlan[1].id]
   instance_types  = ["t3.medium"]
   disk_size       = 20
 

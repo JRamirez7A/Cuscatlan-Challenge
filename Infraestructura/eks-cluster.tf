@@ -75,7 +75,7 @@ resource "aws_eks_cluster" "cuscatlan" {
 
   vpc_config {
     security_group_ids = [aws_security_group.cuscatlan-cluster.id]
-    subnet_ids         = aws_subnet.cuscatlan[*].id
+    subnet_ids         = [aws_subnet.cuscatlan[2].id, aws_subnet.cuscatlan[3].id ]
   }
 
   depends_on = [
