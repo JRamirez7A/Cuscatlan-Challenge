@@ -34,6 +34,7 @@ resource "aws_iam_role_policy_attachment" "cuscatlan-dev-cluster-AmazonEKSVPCRes
   role       = aws_iam_role.cuscatlan-dev-cluster.name
 }
 
+#Creating SG
 resource "aws_security_group" "cuscatlan-dev-cluster" {
   name        = "terraform-eks-cuscatlan-dev-cluster"
   description = "Cluster communication with worker nodes"
@@ -59,6 +60,7 @@ resource "aws_security_group" "cuscatlan-dev-cluster" {
   }
 }
 
+#Security Role
 resource "aws_security_group_rule" "cuscatlan-dev-cluster-ingress-workstation-https" {
   cidr_blocks       = ["0.0.0.0/0"]
   description       = "Allow workstation to communicate with the cluster API Server"

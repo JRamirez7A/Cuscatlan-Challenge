@@ -38,6 +38,7 @@ resource "aws_iam_role_policy_attachment" "cuscatlan-dev-node-AmazonEC2Container
   role       = aws_iam_role.cuscatlan-dev-node.name
 }
 
+#  EKS Node Group to launch worker nodes
 resource "aws_eks_node_group" "cuscatlan-dev" {
   cluster_name    = aws_eks_cluster.cuscatlan-dev.name
   node_group_name = "cuscatlan-dev"

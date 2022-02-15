@@ -5,6 +5,7 @@
 #  * EKS Cluster
 #
 
+#   IAM Role to allow EKS service to manage other AWS services
 resource "aws_iam_role" "cuscatlan-cluster" { #! Role tu create all resourse of eKS
   name = "terraform-eks-cuscatlan-cluster"
 
@@ -34,6 +35,7 @@ resource "aws_iam_role_policy_attachment" "cuscatlan-cluster-AmazonEKSVPCResourc
   role       = aws_iam_role.cuscatlan-cluster.name
 }
 
+#   EC2 Security Group to allow networking traffic with EKS cluster
 resource "aws_security_group" "cuscatlan-cluster" {
   name        = "terraform-eks-cuscatlan-cluster"
   description = "Cluster communication with worker nodes"
@@ -45,7 +47,7 @@ resource "aws_security_group" "cuscatlan-cluster" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-#it's not best practices
+#   it's not best practices
   ingress {
     from_port   = 0
     to_port     = 0
@@ -69,6 +71,7 @@ resource "aws_security_group_rule" "cuscatlan-cluster-ingress-workstation-https"
   type              = "ingress"
 }
 
+#   EKS Cluster
 resource "aws_eks_cluster" "cuscatlan" {
   name     = var.cluster-name
   role_arn = aws_iam_role.cuscatlan-cluster.arn
